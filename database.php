@@ -30,7 +30,6 @@ if (!isset($_SESSION['users'])) {
     ];
 }
 
-// Fungsi untuk mencari pengguna berdasarkan username
 function getUserByUsername($username) {
     foreach ($_SESSION['users'] as $user) {
         if ($user['username'] === $username) {
@@ -40,11 +39,8 @@ function getUserByUsername($username) {
     return null;
 }
 
-// Fungsi untuk menambahkan pengguna baru
 function addUser($fullname, $username, $email, $password) {
-    // Hash password sebelum disimpan
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    // Tambahkan pengguna baru ke dalam session
     $_SESSION['users'][] = [
         'fullname' => $fullname,
         'username' => $username,
@@ -52,8 +48,6 @@ function addUser($fullname, $username, $email, $password) {
         'password' => $hashedPassword
     ];
 }
-
-// Fungsi untuk memeriksa kecocokan username dan password
 function verifyUser($username, $password) {
     $user = getUserByUsername($username);
     if ($user && password_verify($password, $user['password'])) {

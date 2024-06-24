@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $username;
 
-        header('Location: index (2).html');
+        header('Location: index (2).php');
         exit();
     } else {
         $_SESSION['error'] = "Username atau password salah. Silakan coba lagi.";

@@ -43,7 +43,7 @@
 
             </div>
             <div class="image">
-                <img src="gambar/niket.jpg" class="shoe" alt="">
+                <img src="gambar/adidas.jpg" class="shoe" alt="">
                 <img src="text1.jpg" class="text" alt="">
             </div>
         </div>
@@ -354,11 +354,26 @@
 
     <div class="content">
         <h3>berikan penilaian program</h3>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum ullam veniam at itaque culpa hic corporis saepe dicta doloremque nihil.</p>
-        <form action="">
-            <input type="text" placeholder="masukan penilaian" class="box">
-            <input type="submit" value="send" class="btn">
-        </form>
+        <p>Tolong berikan saran anda dengan jujur dan sopan terimakasih telah mengunjungi webside kamii !.</p>
+        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        <input type="text" placeholder="Masukkan saran" name="saran" class="box">
+        <input type="submit" value="Send" class="btn">
+    </form>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $saran = $_POST['saran'];
+        if (!empty($saran)) {
+            $file = fopen("data.txt", "a");
+            fwrite($file, $saran . "\n");
+            fclose($file);
+
+            echo "<p>Saran Anda telah berhasil disimpan.</p>";
+        } else {
+            echo "<p>Saran tidak boleh kosong.</p>";
+        }
+    }
+    ?>
     </div>
 
 </section>
